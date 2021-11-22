@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next";
 import Header from "@/components/Header";
 import Navigation from "@/components/Navigation";
+import HeroSection from "@/components/HeroSection";
 
 type UserPageProps = {
   username: string;
@@ -10,6 +11,7 @@ const UserPage: React.FC<UserPageProps> = ({ username }) => (
   <>
     <Header username={username} />
     <Navigation />
+    <HeroSection />
   </>
 );
 
