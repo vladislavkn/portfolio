@@ -1,17 +1,21 @@
 import useLocationHash from "@/hooks/useLocationHash";
 import styles from "@/styles/Navigation.module.css";
+import { Language } from "@/types";
 import { cx } from "@/utils";
+import { useState } from "react";
+import LanguageSwitch from "./LanguageSwitch";
 
 const menuLinks = ["About", "Skills", "Portfolio", "Contacts"];
 
 const Navigation: React.FC = () => {
   const locationHash = useLocationHash();
+  const [language, setLanguage] = useState<Language>("En");
 
   return (
     <nav className={styles.navigation}>
-      <div className={`container ${styles.navigationContainer}`}>
-        <div className={`row ${styles.navigationRow}`}>
-          <div className={`col-6 ${styles.navigationMenu}`}>
+      <div className={cx("container", styles.navigationContainer)}>
+        <div className={cx("row", styles.navigationRow)}>
+          <div className={cx("col-6", styles.navigationMenu)}>
             {menuLinks.map((text) => (
               <a
                 href={`#${text}`}
@@ -25,7 +29,12 @@ const Navigation: React.FC = () => {
               </a>
             ))}
           </div>
-          <div className="col-6">Slider</div>
+          <div className={cx("col-6", styles.navigationLangSwitchContainer)}>
+            <LanguageSwitch
+              language={language}
+              onChangeLanguage={setLanguage}
+            />
+          </div>
         </div>
       </div>
     </nav>
